@@ -1,0 +1,93 @@
+.participants-section {
+  margin-bottom: 2rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+h3 {
+  margin: 0;
+  color: #24292e;
+  font-size: 1.5rem;
+}
+
+.toggle-btn {
+  padding: 0.5rem 1rem;
+  background: #f6f8fa;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.toggle-btn:hover {
+  background: #e1e4e8;
+}
+
+.participants-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.participant-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: white;
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.participant-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+  border-color: #0969da;
+}
+
+.participant-card img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.username {
+  font-weight: 600;
+  color: #24292e;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.date {
+  font-size: 0.85rem;
+  color: #57606a;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: #57606a;
+  background: #f6f8fa;
+  border-radius: 8px;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 1.1rem;
+}

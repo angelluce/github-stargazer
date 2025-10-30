@@ -1,0 +1,30 @@
+<div class="participants-section">
+  <div class="header">
+    <h3>Participants ({{ participants().length }})</h3>
+    @if (participants().length > maxDisplay()) {
+      <button class="toggle-btn" (click)="toggleShowAll()">
+        {{ showAll() ? 'Show Less' : 'Show All' }}
+      </button>
+    }
+  </div>
+
+  <div class="participants-grid">
+    @for (user of displayedParticipants(); track user.id) {
+      <div class="participant-card">
+        <img [src]="user.avatar_url" [alt]="user.login" loading="lazy">
+        <div class="user-info">
+          <span class="username">{{ user.login }}</span>
+          @if (user.starred_at) {
+            <span class="date">{{ user.starred_at | date:'short' }}</span>
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+  @if (participants().length === 0) {
+    <div class="empty-state">
+      <p>No participants yet. Load a repository to start!</p>
+    </div>
+  }
+</div>

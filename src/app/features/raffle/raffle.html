@@ -1,0 +1,88 @@
+<div class="raffle-container">
+  <header class="header">
+    <h1>🎉 GitHub Stars Raffle 🎉</h1>
+    <p class="subtitle">Select a random winner from repository stargazers</p>
+  </header>
+
+  <!-- Input Component -->
+  <app-repo-input
+    [(repoUrl)]="repoUrl"
+    [(githubToken)]="githubToken"
+    [(loading)]="loading"
+    (loadParticipants)="onLoadParticipants($event)"
+  />
+
+  <!-- Loading State -->
+  @if (loading()) {
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>Loading stargazers... {{ stargazers().length }} loaded</p>
+    </div>
+  }
+
+  <!-- Error Message -->
+  @if (error()) {
+    <div class="error-message">
+      <span class="error-icon">❌</span>
+      <p>{{ error() }}</p>
+    </div>
+  }
+
+  <!-- Repo Info -->
+  @if (repoInfo()) {
+    <div class="repo-info">
+      <h2>{{ repoInfo()?.full_name }}</h2>
+      <div class="repo-stats">
+        <span class="stat">⭐ {{ repoInfo()?.stars }} stars</span>
+        <span class="stat">👥 {{ stargazers().length }} participants loaded</span>
+      </div>
+    </div>
+  }
+
+  <!-- Raffle Controls -->
+  @if (stargazers().length > 0) {
+    <div class="raffle-controls">
+      <button
+        class="raffle-btn"
+        (click)="startRaffle()"
+        [disabled]="raffling()"
+      >
+        {{ raffling() ? '🎲 Drawing winner...' : '🎲 Start raffle!' }}
+      </button>
+    </div>
+
+    <!-- Winner Display -->
+    <app-winner-display
+      [winner]="currentWinner()"
+      [isAnimating]="raffling()"
+    />
+
+    <!-- Participants List -->
+    <app-participants-list
+      [participants]="stargazers()"
+      [maxDisplay]="20"
+    />
+  }
+
+  <!-- Raffle History -->
+  @if (raffleHistory().length > 0) {
+    <div class="history-section">
+      <div class="history-header">
+        <h3>🏆 Raffle history</h3>
+        <button class="clear-btn" (click)="clearHistory()">Clear</button>
+      </div>
+
+      <div class="history-list">
+        @for (result of raffleHistory(); track $index) {
+          <div class="history-item">
+            <img [src]="result.winner.avatar_url" [alt]="result.winner.login">
+            <div class="history-info">
+              <strong>{{ result.winner.login }}</strong>
+              <small>{{ result.repoName }} • {{ result.timestamp | date:'short' }}</small>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>

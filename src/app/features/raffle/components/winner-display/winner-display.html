@@ -1,0 +1,22 @@
+@if (winner()) {
+  <div class="winner-card" [class.animating]="isAnimating()">
+    <div class="confetti">🎉</div>
+    <h2>🏆 Winner! 🏆</h2>
+
+    <div class="winner-content">
+      <img [src]="winner()!.avatar_url" [alt]="winner()!.login">
+      <h3>{{ winner()!.login }}</h3>
+
+      <div class="winner-actions">
+        <a [href]="winner()!.html_url" target="_blank" rel="noopener" class="profile-btn">
+          View Profile
+        </a>
+        <button (click)="copyToClipboard()" class="copy-btn">
+          {{ copied ? '✓ Copied!' : 'Copy Username' }}
+        </button>
+      </div>
+    </div>
+
+    <div class="confetti">🎊</div>
+  </div>
+}

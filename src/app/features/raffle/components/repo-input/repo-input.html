@@ -1,0 +1,34 @@
+<div class="input-section">
+  <label for="repoUrl">Repository URL or owner/repo:</label>
+  <input
+    id="repoUrl"
+    type="text"
+    [(ngModel)]="repoUrl"
+    placeholder="e.g., angular/angular or https://github.com/angular/angular"
+    (keyup.enter)="onSubmit()"
+  />
+
+  <label for="token">
+    GitHub token (optional)
+  </label>
+  <input
+    id="token"
+    type="password"
+    [(ngModel)]="githubToken"
+    placeholder="ghp_xxxxxxxxxxxxx (optional)"
+  />
+
+  <button
+    (click)="onSubmit()"
+    [disabled]="loading() || !repoUrl().trim()"
+    class="primary-btn"
+  >
+    {{ loading() ? 'Loading...' : 'Load participants' }}
+  </button>
+
+  @if (!loading() && repoUrl().trim()) {
+    <p class="info-text">
+      Token is optional. Without it you can make ~60 requests/hour (sufficient for most repos)
+    </p>
+  }
+</div>

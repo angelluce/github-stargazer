@@ -1,0 +1,129 @@
+.winner-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2.5rem;
+  border-radius: 16px;
+  text-align: center;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.winner-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255,255,255,0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.winner-card.animating {
+  animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.confetti {
+  font-size: 3rem;
+  position: absolute;
+  animation: float 3s ease-in-out infinite;
+}
+
+.confetti:first-child {
+  top: 1rem;
+  left: 1rem;
+}
+
+.confetti:last-child {
+  bottom: 1rem;
+  right: 1rem;
+  animation-delay: 1.5s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+h2 {
+  margin: 0 0 2rem 0;
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.winner-content {
+  position: relative;
+  z-index: 1;
+}
+
+img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 5px solid white;
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  display: block;
+}
+
+h3 {
+  margin: 0 0 1.5rem 0;
+  font-size: 2rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.winner-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.profile-btn, .copy-btn {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255,255,255,0.2);
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 8px;
+  display: inline-block;
+  transition: all 0.3s;
+  cursor: pointer;
+  font-size: 1rem;
+  backdrop-filter: blur(10px);
+}
+
+.profile-btn:hover, .copy-btn:hover {
+  background: rgba(255,255,255,0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.copy-btn {
+  background: rgba(255,255,255,0.15);
+}
+
+.copy-btn:active {
+  transform: translateY(0);
+}
